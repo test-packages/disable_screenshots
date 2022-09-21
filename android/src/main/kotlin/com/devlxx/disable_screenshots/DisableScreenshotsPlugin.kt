@@ -49,7 +49,7 @@ public class DisableScreenshotsPlugin: FlutterPlugin, MethodCallHandler, EventCh
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val plugin = DisableScreenshotsPlugin()
-      plugin.activity = registrar.activity()
+      plugin.activity = registrar.activity()!!
       plugin.onAttachedToEngine(registrar.context(), registrar.messenger())
     }
   }
