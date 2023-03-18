@@ -57,7 +57,7 @@ class DisableScreenshots {
                       fontSize: 18,
                       decoration: TextDecoration.none),
             ));
-    overlayState?.insert(_overlayEntry!);
+    overlayState.insert(_overlayEntry!);
   }
 
   /// 添加自定义水印。将[widget]覆盖在所有视图的最上层
@@ -67,7 +67,7 @@ class DisableScreenshots {
     }
     OverlayState? overlayState = Overlay.of(context);
     _overlayEntry = OverlayEntry(builder: (context) => widget);
-    overlayState?.insert(_overlayEntry!);
+    overlayState.insert(_overlayEntry!);
   }
 
   /// 移除水印

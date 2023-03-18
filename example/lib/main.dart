@@ -52,37 +52,33 @@ class _RootAppState extends State<RootApp> {
       ),
       body: Column(
         children: <Widget>[
-          SizedBox(height:100),
+          SizedBox(height: 100),
           Center(
             child: Text("监控到截屏次数：$_screenshotsCount"),
           ),
           Center(
             child: Text(_disableScreenshots ? "禁止截屏状态" : "允许截屏状态"),
           ),
-          RaisedButton(
+          MaterialButton(
               onPressed: () {
-                // 添加默认样式的水印
                 _plugin.addWatermark(context, "默认水印",
                     rowCount: 4, columnCount: 8);
               },
               child: Text("添加默认水印")),
-          RaisedButton(
+          MaterialButton(
               onPressed: () {
-                // 添加自定义widget当做水印
                 _plugin.addCustomWatermark(context,
                     Watarmark(rowCount: 3, columnCount: 10, text: "自定义水印"));
               },
               child: Text("添加自定义水印")),
-          RaisedButton(
+          MaterialButton(
               onPressed: () {
-                // 移除水印
                 _plugin.removeWatermark();
               },
               child: Text("删除水印")),
-          RaisedButton(
+          MaterialButton(
               onPressed: () async {
                 bool flag = !_disableScreenshots;
-                // 禁用或允许截屏（只支持iOS）
                 await _plugin.disableScreenshots(flag);
                 setState(() {
                   _disableScreenshots = flag;
@@ -91,7 +87,7 @@ class _RootAppState extends State<RootApp> {
               child: Text(_disableScreenshots
                   ? "允许截屏（仅android适用）"
                   : "禁用截屏（仅android适用)")),
-          RaisedButton(
+          MaterialButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (_) => Scaffold(
@@ -110,10 +106,7 @@ class _RootAppState extends State<RootApp> {
   @override
   void dispose() {
     super.dispose();
-    //取消截屏监控可以调用cancel()方法
-    if (_screenshotsSubscription != null) {
-      _screenshotsSubscription.cancel();
-    }
+    _screenshotsSubscription.cancel();
   }
 }
 
